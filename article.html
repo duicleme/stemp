@@ -1,0 +1,143 @@
+
+<script>
+
+
+function class_article () {
+	this.num;
+	this.parent_num;
+	this.good_count;
+	this.reply_count;
+	this.isReply;
+	this.article = article ;
+	this.isWrite;
+    this.context;
+    this.strName;
+}
+
+
+
+
+
+
+
+
+
+
+function article ( isReply , strName , num_good, num_reply , isWrite , context )
+{
+	var strDiv;
+	
+
+	
+	strDiv = "div_" + strName;
+	
+
+	
+		
+	if ( isReply ) document.write ( "<table style='padding-left:1.8em;'> " ); 
+	else document.write ( "<table> " );
+
+	
+	document.write ( 
+
+	
+			"<tr>" +
+				"<td><FONT size=2>#190713  NEWS</FONT></td>"+
+			"</tr>"+
+			"<tr>"+
+				"<td>"+
+				
+
+				"<div style='height:auto; width:400px; border:1px solid black; padding:5px; background-color:white;' >"+ 
+                "<pre style='white-space:pre-line; margin:0; padding:0;'>"+context+"</pre>"+				
+				"</div>"+
+				
+				
+
+
+				"</td>"+
+				
+			"</tr>	"+
+			"<tr>"+
+				"<td>"+
+				
+					(!(isWrite)?
+					"<form name='chk_button_form' action='' method='post'>"+
+					"<div id='"+strDiv+"'>"+         // " ex) div_news_1"
+						            "<input type='button' value='^' name='Good'  onClick='check_good ("+isReply +", "+strDiv+" , "+num_good+" , "+num_reply+" )'>GOOD<FONT SIZE=2>("+num_good+")</FONT></input> "+
+					            	"<input type='button' value='v' name='Reply' onClick='check_reply("+isReply +", "+strDiv+" , "+num_good+" , "+num_reply+" )'>REPLY<FONT SIZE=2>("+(isReply?0:num_reply)+")</FONT></input> "+
+						(isReply?"":"<input type='button' value='>' name='Down'  onClick='check_down ("+isReply +", "+strDiv+" , "+num_good+" , "+num_reply+" )'>DOWN</input> ")+
+					"</div>"+
+					"</form>"
+					:
+					
+					"<form name='write_form' action='new_write_form.html' method='post'>"+
+
+					"<input type='hidden' name='good' value="+num_good+" >"+
+					"<input type='hidden' name='reply' value="+num_reply+" > " +
+					
+					"<div id='"+strDiv+"'>"+         // " ex) div_news_1"
+						            "<input type='submit' value='o' name='Write'> GO WRITE FORM</input> "+
+					"</div>"+
+					"</form>"
+					
+					) +
+					
+					
+					
+				"</td>"+
+			"</tr>"+
+		"</table>"
+	);
+
+
+}
+
+
+function check_good ( isReply, strDiv , num_good , num_reply ) {
+	
+
+	num_good = num_good + 1;
+	document.getElementById(strDiv.id).innerHTML = 
+				" <input type='button' value='^' name='Good'  onClick='check_good ( "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>GOOD<FONT SIZE=2>("+num_good+")</FONT></input>"+
+				" <input type='button' value='v' name='Reply' onClick='check_reply( "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>REPLY<FONT SIZE=2>("+(isReply?0:num_reply)+")</FONT></input>"+
+	(isReply?"":" <input type='button' value='>' name='Down'  onClick='check_down ( "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>DOWN</input>");   
+	
+}
+
+function check_reply ( isReply, strDiv , num_good , num_reply ) {
+	
+
+	num_reply = num_reply + 1;
+	document.getElementById(strDiv.id).innerHTML = 
+				" <input type='button' value='^' name='Good'  onClick='check_good (  "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>GOOD<FONT SIZE=2>("+num_good+")</FONT></input>"+
+				" <input type='button' value='v' name='Reply' onClick='check_reply(  "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>REPLY<FONT SIZE=2>("+(isReply?0:num_reply)+")</FONT></input>"+
+	(isReply?"":" <input type='button' value='>' name='Down'  onClick='check_down (  "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>DOWN</input>");   
+	
+}
+
+function check_down ( isReply, strDiv , num_good , num_reply ) {
+	
+
+	document.getElementById(strDiv.id).innerHTML = 
+				" <input type='button' value='^' name='Good'  onClick='check_good (  "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>GOOD<FONT SIZE=2>("+num_good+")</FONT></input>"+
+				" <input type='button' value='v' name='Reply' onClick='check_reply(  "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>REPLY<FONT SIZE=2>("+(isReply?0:num_reply)+")</FONT></input>"+
+	(isReply?"":" <input type='button' value='>' name='Down'  onClick='check_down (  "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>DOWN</input>");   
+	
+}
+
+
+
+
+function check_write (  isReply, strDiv , num_good , num_reply ) {
+	
+	
+	document.getElementById(strDiv.id).innerHTML = 
+				" <input type='button' value='o' name='Write'  onClick='check_write ( "+isReply+", "+strDiv.id+", "+num_good+" , "+num_reply+" )'>WRITE</input>"
+	;   
+	
+}
+
+
+
+</script>

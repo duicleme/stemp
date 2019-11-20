@@ -1,0 +1,56 @@
+<? session_start(); ?>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+<body>
+
+	
+	
+<table>
+<tr>
+	<td>
+		<H1>.CODE</H1>
+		HomeLab 2019<br>
+		O-San in South Korea<br>
+
+	</td>
+	<td>
+		<img src="http://a123.woobi.co.kr/Stemp_Title_800_160.png"><br>
+	</td>
+</tr>
+</table>
+
+
+
+<Table width=1230 height=700 bgcolor=WHITE border=0 color=BLACK>
+<tr>
+	<td align=LEFT valign=TOP width=200 bgcolor=#e63604>
+		
+	</td>
+	
+	<td width=10></td>
+	
+	<td align=LEFT valign=TOP width=500 bgcolor=#FF9D5C>
+		
+	   <iframe src="http://a123.woobi.co.kr/article_news.html" style="border:0" width=510 height=690">
+	   </iframe>
+	</td>
+	
+	<td width=10></td>
+	
+	<td align=LEFT valign=TOP width=500 bgcolor=#FDFD8D>
+		<script> 
+			if (  "<? echo $_SESSION['id']; ?>"  == "" )
+				document.write ( " <iframe src='http://a123.woobi.co.kr/sign.html' style='border:0;' width=510 height=690> </iframe>" );
+			else
+			    document.write ( " <iframe src='http://a123.woobi.co.kr/article_jurnal.html' style='border:0;' width=510 height=690></iframe>" );
+		</script>
+	</td>
+	
+</tr>
+</Table>
+
+
+</body>
+</html>

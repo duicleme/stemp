@@ -1,0 +1,58 @@
+<? session_start(); ?>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+
+<SCRIPT>
+function logout()
+{
+		<? echo "location.replace('http://a123.woobi.co.kr/response_logout.html')"; ?>
+}
+
+function articles ()
+{
+	
+   	// set CLASS .
+   	var arts = new Array();
+   	
+   	// Write
+   	arts[0] = new class_article ();
+	
+   	
+   	arts[0].isReply = false;
+   	
+   	arts[0].good_count = 11;
+   	
+   	arts[0].reply_count = 1;
+   	
+   	arts[0].isWrite = true;
+   	
+   	arts[0].context = "";
+   	
+   	arts[0].strName = "jurnal_1";
+   	
+	// useful (  run CLASS ) .
+	//                 reply_ox        divName_ArticleName              good_count           reply_count            is Write            contant context
+   	arts[0].article(arts[0].isReply,     arts[0].strName,            arts[0].good_count,   arts[0].reply_count,   arts[0].isWrite,      arts[0].context          );
+		
+}
+
+
+</SCRIPT>
+
+	
+<body>
+JURNAL ( <? echo $_SESSION['id'] ?> ) <input type=button value="logout" onclick="logout();" >
+<TABLE width=480><TR><TD style="width:100%; height:5px" bgcolor=black></TD></TR></TABLE>
+
+<!-- <SCRIPT> document.write("ABCDEFG"); </SCRIPT> -->
+<? include 'article.html'; ?>
+<script> articles();</script>
+
+</body>
+
+
+
+
+</html>

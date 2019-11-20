@@ -1,0 +1,131 @@
+<? session_start(); ?>
+<?
+     $id = $_POST['id'];
+     $email = $_POST['email'];
+          
+     $datetime = date("Y-m-d H:i:s") ;
+     
+     
+     $_SESSION['id'] = $id ;
+     
+
+	function create_personal_jurnal ( $id ) {
+  		 $host = 'a123.woobi.co.kr';
+		 $user = 'a123';
+		 $pw   = 'healtheworld~1';
+		 $dbName = 'a123';
+		 $mysqli = new mysqli($host, $user, $pw, $dbName );
+		 if ($mysqli) {
+			 echo ' success connect SQL<br>';
+		 } else {
+			echo ' fail to connect SQL<br>';
+		 }
+		 $table_name = "z_".$id ;            // ex)  z_duicleme
+		 
+		 
+		 $sql = "CREATE TABLE $table_name ( 
+				    number int(20) not null auto_increment ,
+				    writer varchar(30) not null,
+				    good int(20),
+				    parent_number int(20),
+				    content text,
+				    history varchar(200),
+				    date_time datetime,
+				    primary key (number)
+				)";
+		    
+		 if($mysqli->query($sql)) {
+			echo 'success create user_jurnal table<br>';
+		 } else {
+			echo 'fail to create user_juranl table<br>';
+		 }
+
+	}
+   
+	function insert_to_users ($id, $email, $datetime ) {
+		 $host = 'a123.woobi.co.kr';
+		 $user = 'a123';
+		 $pw   = 'healtheworld~1';
+		 $dbName = 'a123';
+		 $mysqli = new mysqli($host, $user, $pw, $dbName );
+		 if ($mysqli) {
+			 echo ' success connect SQL<br>';
+		 } else {
+			echo ' fail to connect SQL<br>';
+		 }
+		 
+	  	 $sql = "INSERT INTO users191103(user_id,user_email,date_time)VALUES('$id','$email','$datetime' )";
+		    
+		 if($mysqli->query($sql)) {
+			echo 'success inserting<br>';
+		 } else {
+			echo 'fail to insert sql<br>';
+		 }
+		 
+	}
+	
+	function compareUserID ( $id )
+	{
+		 $host = 'a123.woobi.co.kr';
+		 $user = 'a123';
+		 $pw   = 'healtheworld~1';
+		 $dbName = 'a123';
+		 $mysqli = new mysqli($host, $user, $pw, $dbName );
+		 if ($mysqli) {
+			 echo ' success connect SQL<br>';
+		 } else {
+			echo ' fail to connect SQL<br>';
+		 }
+
+		$sql = "SELECT user_id FROM users191103 WHERE user_id='$id'";
+		
+		$result = $mysqli->query($sql);
+
+		if ( $result->num_rows ) {
+			echo "존재하는 아이디 입니다.<br>";
+			return 1;
+		}
+		else {
+			echo "존재하지 않는 아이디 입니다.<br>";
+			return 0;
+		}
+			
+	}
+
+
+?>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+<!--		<meta http-equiv="refresh" content="1;url=http://a123.woobi.co.kr/article_jurnal.html">  -->
+	</head>
+<body>
+	
+		
+	<? echo $id ?>
+	<? echo $password ?>
+	<? echo $email ?>
+	<? echo $datetime ?>
+	<? echo "<br>" ?>
+
+	<? $TrustID = compareUserID($id);  
+	   if ( $TrustID == 1 ) {
+		   echo "<script>alert('존재하는 아이디라 데이터 베이스에 등록할 수 없습니다.');</script>";
+		   echo "<script>location.replace('http://a123.woobi.co.kr/sign.html');</script>";
+	   } else 
+	   {
+		   echo "<script>alert('데이터 베이스에 새로운 사용자를 추가합니다.');</script>";
+		  insert_to_users( $id , $email, $datetime); 
+		  create_personal_jurnal ( $id );
+		   echo "<script>location.replace('http://a123.woobi.co.kr/article_jurnal.html');</script>";
+	   }
+	   
+	   
+	?>
+	
+	
+</body>
+</html>
+
+

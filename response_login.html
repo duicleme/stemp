@@ -1,0 +1,61 @@
+<? session_start(); ?>
+<?
+    $id = $_POST['login_id'];
+     
+    $_SESSION['id'] = $id ;
+     
+    function compareUserID ( $id )
+	{
+		 $host = 'a123.woobi.co.kr';
+		 $user = 'a123';
+		 $pw   = 'healtheworld~1';
+		 $dbName = 'a123';
+		 $mysqli = new mysqli($host, $user, $pw, $dbName );
+		 if ($mysqli) {
+			 echo ' success connect SQL<br>';
+		 } else {
+			echo ' fail to connect SQL<br>';
+		 }
+
+		$sql = "SELECT user_id FROM users191103 WHERE user_id='$id'";
+		
+		$result = $mysqli->query($sql);
+
+		if ( $result->num_rows ) {
+			echo "존재하는 아이디 입니다.<br>";
+			return 1;
+		}
+		else {
+			echo "존재하지 않는 아이디 입니다.<br>";
+			return 0;
+		}
+			
+	}
+	
+?>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+<!--		<meta http-equiv="refresh" content="1;url=http://a123.woobi.co.kr/article_jurnal.html"> -->
+	</head>
+<body>
+	
+	<? 
+		$session_id = $_SESSION['id'];
+		echo $session_id; 
+		$TrustID = compareUserID( $session_id );
+		if ( $TrustID == 1 ) {
+		//	echo "<script>alert('안녕 하세요 반갑습니다.');</script>";
+			echo "<script>location.replace('http://a123.woobi.co.kr/article_jurnal.html');</script>";
+		} else {
+			echo "<script>alert('죄송합니다만, 아이디가 확인이 되고 있지 않습니다.');</script>";
+			echo "<script>location.replace('http://a123.woobi.co.kr/sign.html');</script>";
+		}
+		
+	?>
+
+	
+
+</body>
+</html>

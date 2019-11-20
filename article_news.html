@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+
+<script>
+function articles ()
+{
+	
+   	// set CLASS .
+   	var arts = new Array();
+   	// create .
+   	arts[0] = new class_article ();
+   	arts[1] = new class_article ();
+   	arts[2] = new class_article ();
+   	arts[3] = new class_article ();
+   	
+	// proferty . 
+   	arts[0].isReply = false;
+   	arts[1].isReply = true;
+   	arts[2].isReply = false;
+   	arts[3].isReply = false;
+   	
+   	arts[0].good_count = 11;
+   	arts[1].good_count = 2;
+   	arts[2].good_count = 7;
+   	arts[3].good_count = 3;
+   	
+   	arts[0].reply_count = 1;
+   	arts[1].reply_count = 0;
+   	arts[2].reply_count = 0;
+   	arts[3].reply_count = 2;
+	
+	arts[0].isWrite = false;
+	arts[1].isWrite = false;
+	arts[2].isWrite = false;
+	arts[3].isWrite = false;
+	
+	arts[0].context = "aaa";
+	arts[1].context = "bbb";
+	arts[2].context = "ccc";
+	arts[3].context = "ddd<br>"+"<FONT size=4>eee</FONT><br>"+"duicleme@naver.com";
+	
+	arts[0].strName = "news_1";
+	arts[1].strName = "news_2";
+	arts[2].strName = "news_3";
+	arts[3].strName = "news_4";
+		
+   	
+	// useful (  run CLASS ) .
+	//             reply_ox  divName_ArticleName           good_count           reply_count
+   	arts[0].article(arts[0].isReply,     arts[0].strName,            arts[0].good_count,   arts[0].reply_count,   arts[0].isWrite,     arts[0].context      );
+   	arts[1].article(arts[1].isReply,     arts[1].strName,            arts[1].good_count,   arts[1].reply_count,   arts[1].isWrite,     arts[1].context               );
+   	arts[2].article(arts[2].isReply,     arts[2].strName,            arts[2].good_count,   arts[2].reply_count,   arts[2].isWrite,     arts[2].context  );
+   	arts[3].article(arts[3].isReply,     arts[3].strName,            arts[3].good_count,   arts[3].reply_count,   arts[3].isWrite,     arts[3].context 	);
+		
+}
+</script>
+
+
+
+<body>
+
+NEWS<BR>
+<TABLE width=480><TR><TD style="width:100%; height:5px" bgcolor=black></TD></TR></TABLE>
+<? include 'article.html'; ?>
+<script> articles();</script>
+
+
+
+</body>
+</html>
+

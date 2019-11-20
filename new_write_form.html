@@ -1,0 +1,46 @@
+<? session_start(); ?>
+
+				<form>
+
+<FONT size=2><? $datetime = date("Y-m-d H:i:s") ; 
+   echo $datetime; 
+?></FONT>
+
+<? echo $_SESSION['id']; ?>
+				<textarea 	
+						id='txt_1' 
+						name = 'text_1'
+						cols='58' 
+						rows='30' 
+						style='resize:none; overflow-x:hidden; overflow-y:hidden;'
+						wrap='off'>
+good <? echo $_POST['good']; ?> 
+reply <? echo $_POST['reply']; ?> 
+				</textarea> 
+
+				<br>
+				<br>
+				
+				
+				
+				
+				<textarea 	
+						id='txt_2' 
+						name = 'text_2'
+						cols='58' 
+						rows='8' 
+						style='resize:none; overflow-x:hidden; overflow-y:hidden;'
+						wrap='off'>
+						
+				
+				
+				
+				</textarea>
+				
+				<br>
+				<br>
+				
+				<input type="button" name="write" value="O" >WRITE</input>
+				
+				</form>
+				
